@@ -1,0 +1,35 @@
+Header{
+  color:red;
+  background-color:#2A6443;
+}
+solidcolor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1b2430;
+  padding: 20px 80px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+}
+.image-container{
+  width:200px;
+  height:300px;
+}
+
+.col{
+  border:2px rgb(27, 15, 190);
+  width:200px;
+  height:300px;
+
+}
+.row{
+  border:2px black;
+  width:200px;
+  height:300px;
+
+}
+.home-page{
+  border:2px black;
+  width:400px;
+  height:300px;
+
+}

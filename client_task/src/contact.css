@@ -1,0 +1,24 @@
+/* .contact{
+    height:900px;
+    background: linear-gradient( red,blue,pink);
+} */
+.dry{
+    background:#14709A;
+    width:1000;
+    height:70px;
+    font-size: medium;
+    font-style: initial;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+.dry1{
+    background:#408F61;
+    width:1000;
+    height:800px;
+    font-size: medium;
+    font-style: initial;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 400;
+    /* margin-bottom: 80px; */
+}

@@ -1,0 +1,53 @@
+body{
+  margin: 0%;
+  padding: 0%;
+}
+Header{
+  color:red;
+  background-color:#2A6443;
+}
+solidcolor {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1b2430;
+  padding: 20px 80px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+}
+
+
+/* CSS */
+.col {
+  border: 2px solid rgb(27, 15, 190);
+  width: 314px;
+  height: 438px;
+  display: inline-flex;
+}
+
+.row {
+  border: 2px solid #f32929;
+  width: 400px;
+  height: 900px;
+  display: inline;
+  display: inline-block;
+}
+
+.home-page{
+  border:2px solid black;
+  width:400px;
+  height:300px;
+
+}
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #333;
+  color: #fff;
+  padding: 20px 0;
+}
+
+
+
+
