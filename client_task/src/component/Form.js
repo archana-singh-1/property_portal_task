@@ -126,55 +126,88 @@
 
 
 
-
 import React, { useState } from "react";
 
 function PhotoUpload() {
-const [selectedFile, setSelectedFile] = useState(null);
-const [images, setImages] = useState([]);
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [images, setImages] = useState([]);
 
-const handleFileChange = (event) => {
-setSelectedFile(event.target.files[0]);
-};
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
 
-const handleUpload = () => {
-const formData = new FormData();
-formData.append("photo", selectedFile);
+  const handleUpload = () => {
+    const formData = new FormData();
+    formData.append("photo", selectedFile);
 
-fetch("http://localhost:3000/upload", {
-method: "POST",
-body: formData,
-})
-.then((response) => response.json())
-.then((data) => {
-console.log("Upload successful:", data);
-setSelectedFile(null);
-alert("Upload successful");
-})
-.catch((error) => {
-console.error("Error uploading photo:", error);
-});
-};
-const getImages = async () => {
-fetch("http://localhost:3000/all-photo", { method: "GET" })
-.then((response) => response.json())
-.then((res) => {
-console.log("Upload data:", res);
-setImages(res.data);
-});
-};
-console.log(selectedFile);
-return (
-<div>
-<h1>Photo Upload</h1>
-<input type="text" onChange={handleFileChange} defaultValue={""} />
-<button onClick={handleUpload}>Upload</button>
-<button onClick={getImages}>Get all images</button>
-{images.map((e) => (
-<img src={e.url} alt="all" />
-))}
-</div>
-);
+    fetch("http://localhost:3000/upload", {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Upload successful:", data);
+        setSelectedFile(null);
+        alert("Upload successful");
+      })
+      .catch((error) => {
+        console.error("Error uploading photo:", error);
+      });
+  };
+
+  const getImages = async () => {
+    fetch("http://localhost:3000/all-photo", { method: "GET" })
+      .then((response) => response.json())
+      .then((res) => {
+        console.log("Upload data:", res);
+        setImages(res.data);
+      });
+  };
+
+  return (
+    <div className="uplod">
+      <h1>Photo Upload</h1>
+      Geolocation:-
+      <input
+        type="text"
+        id="form_id"
+        defaultValue={""}
+      />
+
+      Configuration:-
+      <input
+        type="text"
+        id="form_id"
+        
+        defaultValue={""}
+      />
+
+      Availability:-
+      <input
+        type="text"
+        id="form_id"
+        defaultValue={""}
+      />
+
+      Photos:-
+      <input
+        type="text"
+        id="form_id"
+        onChange={handleFileChange}
+      />
+
+      <button 
+      onClick={handleUpload}>
+      Upload
+      </button>
+      <button onClick={getImages}>Get all images</button>
+
+
+      {images.map((e, index) => (
+        <img src={e.url} alt="all" />
+      ))}
+    </div>
+  );
 }
 
 export default PhotoUpload;

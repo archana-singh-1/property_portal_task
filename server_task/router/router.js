@@ -1,16 +1,8 @@
-const { signup } = require("../controller/controller");
-const express=require('express')
+const { post_property } = require("../controller/controller");
+const express = require('express');
 
-var router=express.Router();
+const router = express.Router();
 
-router.post('/registerpost',signup)
+router.post('/post_property', post_property);
 
-router.post('/loginpost',login)
-
-router.get('/getdata',get_data)
-
-router.post('/post_property',post_property)
-
-
-
-module.exports=router
+module.exports = router;

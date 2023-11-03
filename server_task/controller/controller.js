@@ -184,42 +184,24 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-app.post("/upload", upload.single("photo"), async (req, res) => {
+const post_property= async (req, res) => {
   try {
-    const imageUrl = `http://localhost:4000/uploads/${req.file.filename}`;
-    const image = new Register({ url: imageUrl });
-
+    upload.single("photo")
+    const imageUrl = `http://localhost:4000/uploads/${file.filename}`;
+    const image = new Register({ 
+      // url: imageUrl,
+      geo_location: req.body.geo_location,
+      configuration: req.body.configuration,
+      amenities: req.body.amenities,
+      availability: req.body.availability,
+      prices: req.body.prices,
+      photos: imageUrl, 
+    });
     await image.save();
     res.json({ success: true });
   } catch (err) {
     console.log(err);
     res.json({ success: false, error: err });
   }
-});
-
-const post_property = async (req, res) => {
-  try {
-    const data = {
-      geo_location: req.body.geo_location,
-      configuration: req.body.configuration,
-      amenities: req.body.amenities,
-      availability: req.body.availability,
-      prices: req.body.prices,
-      photos: req.file.filename, // Use req.file.filename for the uploaded file
-    };
-
-    const insertData = await Register.insertMany(data);
-    res.json({
-      message: 'New post Added',
-      data: insertData,
-    });
-  } catch (err) {
-    console.log(err);
-    res.json({
-      message: 'Post is not inserted successfully',
-      error: err,
-    });
-  }
 };
-
 module.exports = { post_property };
