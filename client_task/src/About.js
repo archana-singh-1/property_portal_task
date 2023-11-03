@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./component/Header";
+import Footer from "./component/Footer";
 const About =() => {
     return(
         <>
@@ -7,6 +8,7 @@ const About =() => {
             <section>
                 <h1>About  Page Read Please</h1>
             </section>
+            <Footer/>
         </>
 
     )

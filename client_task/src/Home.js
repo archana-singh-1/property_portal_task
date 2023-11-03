@@ -23,12 +23,13 @@ function Home() {
 
   console.log(data, "data");
 
+  
   return (
     <>
-      <Header/>
+      <Header />
       <Outlet />
-      {/* <div className="home-page"> */}
-        {/* <div className="row"> */}
+  {/*<div className="home-page">*/}
+  {/*<div className="row">*/}
           {data.map((item) => (
             <div className="col" key={item.id}>
               {/* <p>ID: {item.id}</p> */}
@@ -36,11 +37,10 @@ function Home() {
               <img src={item.image} alt={item.title} />
             </div>
           ))}
-        {/* </div> */}
-      {/* </div> */}
-      <Footer/>
+         {/*</div>*/}
+          {/*</div>*/}
+      <Footer />
     </>
   );
-}
-
+}  
 export default Home;

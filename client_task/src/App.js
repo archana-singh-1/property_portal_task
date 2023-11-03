@@ -3,7 +3,7 @@ import Home from './Home';
 import About from './About';
 import Contact from './Contact';
 // import Header from './component/Header';
-// import Footer from "./component/Footer";
+import Footer from "./component/Footer";
 import Login from "./Login";
 import Register from "./Register";
 import './Form.css'
@@ -25,7 +25,7 @@ function App() {
 
 
       </Routes>
-      {/* <Footer/> */}
+     <Footer/> 
 
 
     </BrowserRouter>
