@@ -123,7 +123,7 @@ login = async (req, res) => {
       console.error(err);
       res.status(500).json({ message: "Internal server error" });
     }
-  };
+  }
 
 
 get_data =async(req,res)=>{
