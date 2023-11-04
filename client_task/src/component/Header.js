@@ -16,9 +16,9 @@ const Header =() => {
                         <li>
                             <NavLink to="/contact">Contact</NavLink>
                         </li>
-                        <li>
-                            <NavLink to="/PropertyForm">Form</NavLink>
-                        </li>
+                        // <li>
+                        //     <NavLink to="/PropertyForm">Form</NavLink>
+                        // </li>
                     </ul>
                 </nav> 
 

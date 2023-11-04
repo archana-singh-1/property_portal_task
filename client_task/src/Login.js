@@ -16,7 +16,7 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        fetch("http://localhost:4000/loginpost", { 
+        fetch("http://localhost:4000/loginpost", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ const Login = () => {
             .then((data) => {
                 console.log('Response:', data);
                 alert("Login is successful");
-                
+
 
             })
             .catch((error) => {
@@ -41,18 +41,39 @@ const Login = () => {
     };
 
     return (
-        <form className="register" onClick={handleSubmit}>
+        // <form className="login" onClick={handleSubmit}>
+        //     <h1>Login</h1>
+        //     <input type="text" name="email" placeholder="Enter Email" value={user.email} onChange={storeData} />
+        //     <input type="password" name="password" placeholder="Enter password" value={user.password} onChange={storeData} /> {/* Changed input type to 'password' for the password field */}
+        //     <button type="submit" className="button"  onClick={()=>navigate("/homepage")}>
+        //         Submit
+        //     </button>
+        //     <div>or</div>
+        //     <div className="button" >Register</div>
+
+
+        // </form>
+
+        <div className="login" onClick={handleSubmit}>
             <h1>Login</h1>
-            <input type="text" name="email" placeholder="Enter Email" value={user.email} onChange={storeData} />
-            <input type="password" name="password" placeholder="Enter password" value={user.password} onChange={storeData} /> {/* Changed input type to 'password' for the password field */}
-            <button type="submit" className="button"  onClick={()=>navigate("/homepage")}>
-                Submit
-            </button>
-            <div>or</div>
-            <div className="button" >Register</div>
 
+            <input
+                type="text"
+                name="email"
+                placeholder="Enter Email"
+                value={user.email}
+                onChange={storeData}
+            />
+            <input
+                type="password"
+                name="password"
+                placeholder="Enter password"
+                value={user.password}
+                onChange={storeData}
+            />
 
-        </form>
+            <button type="submit" className="button" onClick={() => navigate("/homepage")}>Submit</button>
+        </div>
     );
 };
 

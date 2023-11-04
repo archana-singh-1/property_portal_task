@@ -1,211 +1,101 @@
-// import React, { useState } from "react";
-// import Header from "./Header";
-
-// function PropertyForm() {
-//   const [formData, setFormData] = useState({
-//     address: "",
-//     geoLocation: "",
-//     configuration: "",
-//     amenities: "",
-//     availability: "",
-//     rent: "",
-//     maintenance: "",
-//     deposit: "",
-//   });
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData({ ...formData, [name]: value });
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     // You can process or display the formData here
-//     console.log("Form Data:", formData);
-//   };
-
-//   return (
-//     <>
-//       <Header />
-//       <div className="container">
-//         <h2>Property Details</h2>
-
-//         <form onSubmit={handleSubmit}>
-//           Address:-
-//           <input className="form"
-//             type="text"
-//             id="address"
-//             name="address"
-//             value={formData.address}
-//             onChange={handleChange}
-//             required
-//           />
-
-//           GeoLocation:-
-//           <input className="form"
-//             type="text"
-//             id="geoLocation"
-//             name="geoLocation"
-//             value={formData.geoLocation}
-//             onChange={handleChange}
-//             required
-//           />
-
-//           Configuration:-
-//           <input className="form"
-//             type="text"
-//             id="configuration"
-//             name="configuration"
-//             value={formData.configuration}
-//             onChange={handleChange}
-//             required
-//           />
-
-//           Amenities:-
-//           <input className="form"
-//             type="text"
-//             id="amenities"
-//             name="amenities"
-//             value={formData.amenities}
-//             onChange={handleChange}
-//             required
-//           />
-
-//           Availability:-
-//           <input className="form"
-//             type="text"
-//             id="availability"
-//             name="availability"
-//             value={formData.availability}
-//             onChange={handleChange}
-//             required
-//           />
-
-//           Rent Price:-
-//           <input className="form"
-//             type="number"
-//             id="rent"
-//             name="rent"
-//             value={formData.rent}
-//             onChange={handleChange}
-//             required
-//           />
-
-//           Maintenance Price:-
-//           <input className="form"
-//             type="number"
-//             id="maintenance"
-//             name="maintenance"
-//             value={formData.maintenance}
-//             onChange={handleChange}
-//             required
-//           />
-
-//           Deposit Price:-
-//           <input className="form"
-//             type="number"
-//             id="deposit"
-//             name="deposit"
-//             value={formData.deposit}
-//             onChange={handleChange}
-//             required
-//           />
-
-//           <button type="submit">Submit</button>
-//         </form>
-//       </div>
-//     </>
-//   );
-// }
-
-// export default PropertyForm;
-
-
-
-
-
-
-
 import React, { useState } from "react";
-
 function PhotoUpload() {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [images, setImages] = useState([]);
+  const [geo_location, setGeo_location] = useState("");
+  const [configuration, setConfiguration] = useState("");
+  const [amenities, setAmenities] = useState("");
+  const [availability, setAvailability] = useState("");
+  const [prices, setPrices] = useState("");
+  const [uploadMessage, setUploadMessage] = useState("");
 
   const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0]);
+    if (event.target.files.length > 0) {
+      setSelectedFile(event.target.files[0]);
+    }
   };
 
   const handleUpload = () => {
+    if (!selectedFile) {
+      setUploadMessage("Please select a file.");
+      return;
+    }
+    console.log("Uploading file...");
+    
     const formData = new FormData();
     formData.append("photo", selectedFile);
-
-    fetch("http://localhost:3000/upload", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Upload successful:", data);
-        setSelectedFile(null);
-        alert("Upload successful");
+    formData.append("geo_location", geo_location);
+    formData.append("configuration", configuration);
+    formData.append("amenities", amenities);
+    formData.append("availability", availability);
+    formData.append("prices", prices);
+  
+    
+    
+      fetch("http://localhost:4000/post_property", {
+        method: "POST",
+        body: formData,
       })
-      .catch((error) => {
-        console.error("Error uploading photo:", error);
-      });
-  };
-
-  const getImages = async () => {
-    fetch("http://localhost:3000/all-photo", { method: "GET" })
-      .then((response) => response.json())
-      .then((res) => {
-        console.log("Upload data:", res);
-        setImages(res.data);
-      });
-  };
-
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Error uploading photo");
+          }
+          return response.text(); 
+        })
+        .then((data) => {
+          console.log("Response:", data); 
+          setSelectedFile(null);
+          setUploadMessage("Upload successful");
+        })
+        .catch((error) => {
+          console.error("Error uploading photo:", error);
+          setUploadMessage("Error uploading photo.");
+        });
+    };
   return (
-    <div className="uplod">
-      <h1>Photo Upload</h1>
-      Geolocation:-
+    <div>
       <input
-        type="text"
-        id="form_id"
-        defaultValue={""}
-      />
-
-      Configuration:-
-      <input
-        type="text"
-        id="form_id"
-        
-        defaultValue={""}
-      />
-
-      Availability:-
-      <input
-        type="text"
-        id="form_id"
-        defaultValue={""}
-      />
-
-      Photos:-
-      <input
-        type="text"
-        id="form_id"
+        type="file"
+        name="photo"
         onChange={handleFileChange}
+        placeholder="Upload a photo"
       />
-
-      <button 
-      onClick={handleUpload}>
-      Upload
-      </button>
-      <button onClick={getImages}>Get all images</button>
-
-
-      {images.map((e, index) => (
-        <img src={e.url} alt="all" />
-      ))}
+      <input
+        type="text"
+        name="geo_location"
+        value={geo_location}
+        onChange={(e) => setGeo_location(e.target.value)}
+        placeholder="Enter geo_location"
+      />
+      <input
+        type="text"
+        name="configuration"
+        value={configuration}
+        onChange={(e) => setConfiguration(e.target.value)}
+        placeholder="Enter configuration"
+      />
+      <input
+        type="text"
+        name="amenities"
+        value={amenities}
+        onChange={(e) => setAmenities(e.target.value)}
+        placeholder="Enter amenities"
+      />
+      <input
+        type="text"
+        name="availability"
+        value={availability}
+        onChange={(e) => setAvailability(e.target.value)}
+        placeholder="Enter availability"
+      />
+      <input
+        type="text"
+        name="prices"
+        value={prices}
+        onChange={(e) => setPrices(e.target.value)}
+        placeholder="Enter prices"
+      />
+      <button onClick={handleUpload}>Upload</button>
+      {uploadMessage && <p>{uploadMessage}</p>}
     </div>
   );
 }

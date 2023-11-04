@@ -63,11 +63,11 @@ function Register() {
         onChange={handleData}
       />
 
-      <div className="button" onClick={handleSubmit}>
+      <div className="register"onClick={handleSubmit}>
         Register
       </div>
       <div>or</div>
-      <button  className="button" onClick={()=>navigate("/login")}>login</button>
+      <button onClick={()=>navigate("/login")}>login</button>
     </div>
   );
 }
