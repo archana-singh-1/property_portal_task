@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
   const upload = multer({ storage });
 
 router.post('/post_property',upload.single("photo"), post_property);
-
+router.get("/get_photo",get_property)
 
 module.exports = router;
 
