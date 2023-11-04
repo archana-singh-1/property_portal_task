@@ -9,7 +9,7 @@ function Footer() {
             </div>
             <div className="footer-row2">
               <div className="footer-col1">
-                <h1>PRESS RELEASES</h1>
+                <h1>PROTAL PROPERTY</h1>
               </div>
               <div className="footer-col2"></div>
             </div>

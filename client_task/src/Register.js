@@ -43,12 +43,14 @@ function Register() {
       <h1>Register</h1>
       <input
         type="text"
+        className="input_btn"
         name="name"
         placeholder="Enter Name"
         value={inputData.name}
         onChange={handleData}
       />
       <input
+        className="input_btn"
         type="text"
         name="email"
         placeholder="Enter Email"
@@ -58,12 +60,13 @@ function Register() {
       <input
         type="password"
         name="password"
+        className="input_btn"
         placeholder="Enter password"
         value={inputData.password}
         onChange={handleData}
       />
 
-      <div className="register"onClick={handleSubmit}>
+      <div className="register_btn"onClick={handleSubmit}>
         Register
       </div>
       <div>or</div>

@@ -113,13 +113,6 @@ get_property =async(req,res)=>{
 
 }  
 
-
-
-
-
-
-
-
 module.exports = { signup,login,get_data,post_property,get_property};
 
 

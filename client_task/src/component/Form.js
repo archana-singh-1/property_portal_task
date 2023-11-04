@@ -42,6 +42,7 @@ function PhotoUpload() {
           return response.text(); 
         })
         .then((data) => {
+          alert("Data Successfully Added")
           console.log("Response:", data); 
           setSelectedFile(null);
           setUploadMessage("Upload successful");
@@ -52,14 +53,10 @@ function PhotoUpload() {
         });
     };
   return (
-    <div>
+    <div className="container">
+      <h2>PROPERTY FORM</h2>
       <input
-        type="file"
-        name="photo"
-        onChange={handleFileChange}
-        placeholder="Upload a photo"
-      />
-      <input
+        className="input_btn"
         type="text"
         name="geo_location"
         value={geo_location}
@@ -69,6 +66,7 @@ function PhotoUpload() {
       <input
         type="text"
         name="configuration"
+        className="input_btn"
         value={configuration}
         onChange={(e) => setConfiguration(e.target.value)}
         placeholder="Enter configuration"
@@ -76,6 +74,7 @@ function PhotoUpload() {
       <input
         type="text"
         name="amenities"
+        className="input_btn"
         value={amenities}
         onChange={(e) => setAmenities(e.target.value)}
         placeholder="Enter amenities"
@@ -84,15 +83,24 @@ function PhotoUpload() {
         type="text"
         name="availability"
         value={availability}
+        className="input_btn"
         onChange={(e) => setAvailability(e.target.value)}
         placeholder="Enter availability"
       />
       <input
         type="text"
+        className="input_btn"
         name="prices"
         value={prices}
         onChange={(e) => setPrices(e.target.value)}
         placeholder="Enter prices"
+      />
+
+      <input
+        type="file"
+        name="photo"
+        onChange={handleFileChange}
+        placeholder="Upload a photo"
       />
       <button onClick={handleUpload}>Upload</button>
       {uploadMessage && <p>{uploadMessage}</p>}

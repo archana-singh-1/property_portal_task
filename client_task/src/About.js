@@ -6,7 +6,7 @@ const About =() => {
         <>
             <Header/>
             <section>
-                <h1>About  Page Read Please</h1>
+                <h1>PORTAL PROPERTY</h1>
             </section>
             <Footer/>
         </>
